@@ -1,6 +1,17 @@
-import React from 'react'
+import React ,{useState}from 'react'
+import EditTask from '../Modals/EditTask'
 
-const Card = ({taskObj,index,deleteTask}) => {
+const Card = ({taskObj,index,deleteTask,updateListArray}) => {
+     //we need to change the modal so we make use of useState hook 
+    const [modal, setModal] = useState(false);
+
+    
+  const toggle=()=>{
+    //toggling the modal status
+    setModal(!modal);
+}
+
+
     const colors = [
         {
             primaryColor : "#5D93E1",
@@ -25,7 +36,15 @@ const Card = ({taskObj,index,deleteTask}) => {
     ]
 
     const handleDelete = ()=>{
-       deleteTask(index);
+       deleteTask(taskObj.name);
+       console.log("clicked taskObj name");
+       console.log(taskObj.name);
+    }
+
+    const updateTask = (obj)=>{
+        //updating the updateListArray() that takes obj and index of the todolist
+        updateListArray(obj,index);
+        //index is passed in order to know to which indexed obj is to be updated
     }
 
   return (
@@ -36,10 +55,12 @@ const Card = ({taskObj,index,deleteTask}) => {
                         <p className= "mt-3 px-1">{taskObj.description}</p>
         
                         <div style={{position:"absolute",right:"20px",bottom:"20px"}}>
-                            <i className= "far fa-edit mx-3" style={{"color" : colors[index%5].primaryColor,cursor:"pointer"}}></i>
+                            <i className= "far fa-edit mx-3" style={{"color" : colors[index%5].primaryColor,cursor:"pointer"}} onClick={()=>setModal(true)}></i>
                             <i className="fas fa-trash-alt" style = {{"color" : colors[index%5].primaryColor,cursor:"pointer"}} onClick={handleDelete}></i>
                         </div>
                 </div>
+                {/* So to popup the update modal we put EditTask component over here*/}
+                <EditTask modal={modal} toggle={toggle} updateTask={updateTask} taskObj={taskObj}/>
             </div>
   )
 }

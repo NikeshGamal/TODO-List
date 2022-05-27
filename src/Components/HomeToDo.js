@@ -5,18 +5,21 @@ import Card from './Card';
 const HomeToDo = () => {
     //we need to change the modal so we make use of useState hook 
  const [modal, setModal] = useState(false);
+   //we are making an array of task i.e. taskList so that when we create any task we can display it on the screen
+  //for that we are using useState hook so that our states will be updated 
+  const [taskLists, setTaskList] = useState([]);
  
   //Inorder to fetch the data and show up when loaded we use useEffect hook that will load only once at the beginning of the program load
   useEffect(() => {
       let arr= localStorage.getItem('taskLists');
-
+       console.log("useeffect in action");
       if(arr){
          //it will change the object string into array string
          let obj = JSON.parse(arr);
          console.log(obj);
          setTaskList(obj);
       }
-  }, [])
+  },[]);
   
   
 
@@ -24,9 +27,7 @@ const HomeToDo = () => {
       //toggling the modal status
       setModal(!modal);
   }
-  //we are making an array of task i.e. taskList so that when we create any task we can display it on the screen
-  //for that we are using useState hook so that our states will be updated 
-  const [taskLists, setTaskList] = useState([]);
+
 
   //whenever the create button is clicked of the modal we need to save the task in the form of object and bush that task in the array so the array will be of array of objects
   const saveTask=(taskobj)=>{
@@ -41,6 +42,8 @@ const HomeToDo = () => {
       setModal(false);
       //also we need to update the taskList so that the state taskList be updated
       setTaskList(tempList);
+      console.log("updated list");
+      console.log(taskLists);
   }
 
   //to handle the deleteTask we use deleteTask
@@ -53,10 +56,24 @@ const HomeToDo = () => {
       console.log(tempList);
       localStorage.setItem("taskLists",JSON.stringify(tempList));
       setTaskList(tempList);
-       //display
+    //    //display
        window.location.reload(true);
    }
 
+// const deleteTask = (name)=>{
+//     console.log("inside remove item block");
+//      let filterList = taskLists.filter
+//    console.log(name);
+// }
+
+      const updateListArray = (obj,index)=>{
+             let tempList = taskLists;
+             tempList[index]=obj;
+             localStorage.setItem("taskLists",JSON.stringify(tempList));
+             setTaskList(tempList);
+             window.location.reload(true);
+      }
+      
   return (
     <>
        <div className="headSection d-flex flex-column justify-content-center align-items-center">
@@ -65,7 +82,7 @@ const HomeToDo = () => {
         <button className="button btn btn-primary" onClick={()=>setModal(true)}>Create task</button>
        </div>
        <div className="container d-flex">
-           {taskLists.map((obj,index)=><Card taskObj={obj} index={index} key={index} deleteTask={deleteTask}/>)}
+           {taskLists.map((obj,index)=><Card taskObj={obj} index={index} key={index} deleteTask={deleteTask} updateListArray={updateListArray}/>)}
        </div>
        <CreateTask modal={modal} toggle={toggle} save={saveTask}/>
     </>
