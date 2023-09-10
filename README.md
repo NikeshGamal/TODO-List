@@ -23,11 +23,11 @@ Completed a task or decided not to proceed with it? No problem! You can remove t
 ### Screenshot
 
 Insert a screenshot here to showcase the To-Do List feature in action.
-![Screenshot Create Task]([URL](https://raw.githubusercontent.com/NikeshGamal/TODO-List/master/mobile%20(1).png))
-![Screenshot Update Task]([URL](https://raw.githubusercontent.com/NikeshGamal/TODO-List/master/mobile%20(2).png))
+![Screenshot Create Task](https://raw.githubusercontent.com/NikeshGamal/TODO-List/master/mobile%20(1).png)
+![Screenshot Update Task](https://raw.githubusercontent.com/NikeshGamal/TODO-List/master/mobile%20(2).png)
 ####Deletion
-![Before Deletion]([URL](https://raw.githubusercontent.com/NikeshGamal/TODO-List/master/mobile.png))
-![After Deletion]([URL](https://raw.githubusercontent.com/NikeshGamal/TODO-List/master/mobile%20(3).png))
+![Before Deletion](https://raw.githubusercontent.com/NikeshGamal/TODO-List/master/mobile.png)
+![After Deletion](https://raw.githubusercontent.com/NikeshGamal/TODO-List/master/mobile%20(3).png)
 
 ### Tips
 
